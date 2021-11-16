@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="./dist/css/custom.css">
+
+    <title>ระบบเช็คการมาเรียน</title>
+</head>
+
+<body>
+    <div class="h-100">
+        <table class="h-100 w-100">
+            <tr>
+                <td class="text-center">
+                    <h1 id="status">Success!</h1>
+                    <h2 id="name">User: </h2>
+                    <h2 id="time">Time: </h2>
+                    <p id="userId">user ID: </p>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src=" https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <!-- <script src="./dist/js/custom.js "></script> -->
+
+
+    <!-- <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+    <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script> -->
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
+                success: function(result) {
+                    var UID = 'U78ac1488ecdfb1a578c28265e531ba72';
+                    $('#userId').append(UID);
+                    if (result.indexOf(UID) > 0) {
+                        lines = result.split('\r\n');
+                        lines.map((line) => {
+                            fields = line.split(',');
+                            if (fields[0] === UID) {
+                                var name = fields[2] + fields[3] + ' ' + fields[4];
+                                $('#name').append(name);
+                                var now = new Date();
+                                var strNow = now.getHours() + ':' + now.getMinutes();
+                                $('#time').append(strNow);
+                                $('#userId').append()
+                            }
+                        });
+                    } else {
+                        console.log('Not found!');
+                    }
+                    //console.log(JSON.stringify(data));
+
+                    //result = result.replaceAll('\r', '');
+                    //console.log(result);
+                    //data = $.csv.toArray(result);
+                    //console.log(data);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
