@@ -42,7 +42,7 @@
                     <div class="card-body">
                         <h5 class="card-title">ข้อมูลนักเรียน</h5>
                         <p class="card-text">
-                        <input type="text" id="lineId">
+                        <input type="hidden" id="lineId">
                         <div class="form-group">
                             <label for="studentId">รหัสนักเรียน</label>
                             <input type="text" class="form-control bg-white" id="studentId" readonly>
@@ -61,7 +61,7 @@
                         </div>
                         </p>
                         <div class="form-group">
-                            <button class="btn btn-primary">เสร็จสิ้น</button>
+                            <button class="btn btn-primary" onclick="liff.closeWindow()">เสร็จสิ้น</button>
                         </div>
                     </div>
                 </div>
@@ -86,9 +86,9 @@
     <script src="./dist/js/register.js "></script>
 
     <!-- DEBUG -->
-    <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+    <!-- <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
     <script>
         // VConsole will be exported to `window.VConsole` by default.
         var vConsole = new window.VConsole();
-    </script>
+    </script> -->
 </body>

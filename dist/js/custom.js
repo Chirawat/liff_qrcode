@@ -11,7 +11,7 @@ async function main() {
     if (params.get("param") !== null) {
         const profile = await liff.getProfile();
         
-        $("#userId").append(profile.userId)
+        //$("#userId").append(profile.userId)
 
         $.ajax({
             url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
@@ -34,10 +34,15 @@ async function main() {
                             field[6] + '&entry.719468585=' +
                             field[7] + '&submit=Submit';
 
+                            $('#status').text('สำเร็จ!');
+                            $("#close-button").css("display", "inline");
+
                             // // save to google sheet
                             var xmlHttp = new XMLHttpRequest();
                             xmlHttp.open("GET", url, false); // false for synchronous request
                             xmlHttp.send(null);
+
+                            
                         }
                     });
                     
