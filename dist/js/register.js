@@ -20,7 +20,8 @@ function requestForData() {
 
 async function main() {
     await liff.init({
-        liffId: "1656642215-1namPL5Q"
+        //liffId: "1656642215-1namPL5Q"
+        liffId: "1656646368-JLlBKQem"
     })
 
     const profile = await liff.getProfile();
