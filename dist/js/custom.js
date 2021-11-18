@@ -2,7 +2,6 @@ var UID;
 
 async function main() {
 
-    //await liff.init({ liffId: "1656626766-8BeYd530" });
     await liff.init({ liffId: "1656646368-2QL0wVaq" });
 
     const queryString = decodeURIComponent(window.location.search);
