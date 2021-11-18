@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="./dist/css/custom.css">
+
+    <title>ลงทะเบียน</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ระบบลงทะเบียน</h5>
+                        <div class="form-group">
+                            <label for="nationalId">รหัสบัตรประจำตัวประชาชน</label>
+                            <input type="text" class="form-control" id="nationalId" aria-describedby="nationalIdHelp"
+                                placeholder="ใส่รหัสบัตรประจำตัวประชาชน">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" onclick="requestForData()">ตรวจสอบข้อมูล</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ข้อมูลนักเรียน</h5>
+                        <p class="card-text">
+                        <input type="text" id="lineId">
+                        <div class="form-group">
+                            <label for="studentId">รหัสนักเรียน</label>
+                            <input type="text" class="form-control bg-white" id="studentId" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentName">ชื่อ-สกุล</label>
+                            <input type="text" class="form-control bg-white" id="studentName" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">ระดับชั้น</label>
+                            <input type="text" class="form-control bg-white" id="grade" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="section">ห้อง</label>
+                            <input type="text" class="form-control bg-white" id="section" readonly>
+                        </div>
+                        </p>
+                        <div class="form-group">
+                            <button class="btn btn-primary">เสร็จสิ้น</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js "
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+        crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js "
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl "
+        crossorigin="anonymous "></script>
+
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+
+    <script src="./dist/js/register.js "></script>
+
+    <!-- DEBUG -->
+    <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+    <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script>
+</body>

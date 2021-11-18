@@ -1,40 +1,53 @@
+var UID;
+
 async function main() {
 
+    await liff.init({ liffId: "1656626766-8BeYd530" });
 
+    const queryString = decodeURIComponent(window.location.search);
 
+    const params = new URLSearchParams(queryString);
 
-    // await liff.init({ liffId: "1656626766-8BeYd530" })
+    if (params.get("param") !== null) {
+        const profile = await liff.getProfile();
+        
+        $("#userId").append(profile.userId)
 
-    // const queryString = decodeURIComponent(window.location.search)
+        $.ajax({
+            url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
+            success: function(result) {
+                if(result.indexOf(profile.userId) > 1) {
+                    lines = result.split('\r\n');
+                    lines.map((data)=>{
+                        var field = data.split(',');
+                        if(field[0] === profile.userId){
 
-    // const params = new URLSearchParams(queryString)
+                            $('#name').append(field[2] + field[3] + '  ' + field[4]);
+                            var now = new Date();
+                            $('#time').append(now.toLocaleTimeString());
+                            // get students data
+                            var url = 'https://docs.google.com/forms/d/e/1FAIpQLScH94bKiIR54tzzWDd8dkvvTka_TkHJjb5RS6Ka2YvuOtS_jQ/formResponse?usp=pp_url&entry.448259260=' + 
+                            profile.userId + '&entry.58029896=' +
+                            field[1] + '&entry.670271101=' +
+                            params.get("param") + '&entry.325908539=' +
+                            field[2] + field[3] + '  ' + field[4] + '&entry.718694407=' + 
+                            field[6] + '&entry.719468585=' +
+                            field[7] + '&submit=Submit';
 
-    //alert(params.get("param"))
-
-    // if (params.get("param") !== null) {
-    //     const profile = await liff.getProfile()
-    //     document.getElementById("userId").append(profile.userId)
-
-    //     var url = "https://docs.google.com/forms/d/e/1FAIpQLScH94bKiIR54tzzWDd8dkvvTka_TkHJjb5RS6Ka2YvuOtS_jQ/formResponse?usp=pp_url&entry.448259260=" + profile.userId + "&entry.58029896=" + "std_id" + "&submit=Submit"
-
-    //     var xmlHttp = new XMLHttpRequest();
-    //     xmlHttp.open("GET", url, false); // false for synchronous request
-    //     xmlHttp.send(null);
-    // }
+                            // // save to google sheet
+                            var xmlHttp = new XMLHttpRequest();
+                            xmlHttp.open("GET", url, false); // false for synchronous request
+                            xmlHttp.send(null);
+                        }
+                    });
+                    
+                }
+                else{
+                    alert('ไม่พบบัญชี กรุณาลงทะเบียนก่อนใช้งาน')
+                }
+            }
+        });
+    }
 }
 
-
-
-//main()
-
-var data;
-$.ajax({
-    type: "GET",
-    url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
-    dataType: "text",
-    success: function(response) {
-        data = $.csv.toArrays(response);
-        //generateHtmlTable(data);
-        console.log(data)
-    }
-});
+main();
