@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="./dist/css/custom.css">
+
+    <title>Front Panel</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h1 id="result" class="text-center">....</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="qr-reader"></div>
+            </div>
+            <div class="col-sm-6 text-center">
+                <img src="./img/qrcode.png" / width="80%">
+            </div>
+        </div>
+        <div id="qr-reader-results"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- <script src="./dist/js/custom.js "></script> -->
+    <script>
+        $(document).ready(function() {
+            function onScanSuccess(decodedText, decodedResult) {
+                if (decodedText !== lastResult) {
+                    ++countResults;
+                    lastResult = decodedText;
+                    // Handle on success condition with the decoded message.
+                    console.log(`Scan result ${decodedText}`, decodedResult);
+                    //$('#result').text(`Scan result ${decodedText}`, decodedResult);
+                    $.ajax({
+                        url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
+                        success: function(result) {
+                            console.log('Decoeded Text: ' + decodedText);
+                            if (result.indexOf(decodedText) > 1) {
+                                lines = result.split('\r\n');
+                                //console.log(lines);
+                                lines.map((data) => {
+                                    var field = data.split(',');
+                                    if (field[5] == decodedText) {
+                                        console.log('Found: ' + data);
+
+                                        var url = 'https://docs.google.com/forms/d/e/1FAIpQLScH94bKiIR54tzzWDd8dkvvTka_TkHJjb5RS6Ka2YvuOtS_jQ/formResponse?usp=pp_url&entry.448259260=' +
+                                            '-' + '&entry.58029896=' +
+                                            field[1] + '&entry.670271101=' +
+                                            decodedText + '&entry.325908539=' +
+                                            field[2] + field[3] + '  ' + field[4] + '&entry.718694407=' +
+                                            field[6] + '&entry.719468585=' +
+                                            field[7] + '&submit=Submit';
+
+                                        // // // save to google sheet
+                                        // try {
+
+                                        var name = field[2] + field[3] + '  ' + field[4];
+
+                                        $('#result').text(name);
+
+                                        //var url = 'http://127.0.0.1:5000/save?studentId=' + field[1] + '&qrCode=' + decodedText + '&student=' + name + '&grade=' + field[6] + '&section=' + field[7];
+
+                                        var xmlHttp = new XMLHttpRequest();
+                                        xmlHttp.open("GET", url, false); // false for synchronous request
+
+                                        //xmlHttp.withCredentials = true;
+
+                                        xmlHttp.send(null);
+                                        // } catch (err) {
+                                        //     console.log('Errro occured!!!!');
+                                        // }
+
+                                        // try {
+
+                                        //     $.ajax({
+                                        //         url: url,
+                                        //         crossDomain: true,
+                                        //         xhrFields: {
+                                        //             withCredentials: true
+                                        //         },
+                                        //         success: function() {
+                                        //             console.log('done');
+                                        //         }
+
+                                        //     });
+                                        // } catch (e) {
+                                        //     console.log('Something error');
+                                        // }
+                                    }
+                                });
+                            }
+                        }
+                    })
+                }
+            }
+
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "qr-reader", {
+                    fps: 10,
+                    qrbox: 250
+                });
+            html5QrcodeScanner.render(onScanSuccess);
+
+            console.log("ready!");
+        });
+        var resultContainer = document.getElementById('qr-reader-results');
+        var lastResult, countResults = 0;
+    </script>
+
+    <!-- DEBUG -->
+    <!-- <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+    <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script> -->
+</body>
+
+</html>
