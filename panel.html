@@ -70,41 +70,15 @@
                                             field[6] + '&entry.719468585=' +
                                             field[7] + '&submit=Submit';
 
-                                        // // // save to google sheet
-                                        // try {
-
+                                        // save to google sheet
                                         var name = field[2] + field[3] + '  ' + field[4];
 
                                         $('#result').text(name);
 
-                                        //var url = 'http://127.0.0.1:5000/save?studentId=' + field[1] + '&qrCode=' + decodedText + '&student=' + name + '&grade=' + field[6] + '&section=' + field[7];
-
                                         var xmlHttp = new XMLHttpRequest();
                                         xmlHttp.open("GET", url, false); // false for synchronous request
-
-                                        //xmlHttp.withCredentials = true;
-
                                         xmlHttp.send(null);
-                                        // } catch (err) {
-                                        //     console.log('Errro occured!!!!');
-                                        // }
 
-                                        // try {
-
-                                        //     $.ajax({
-                                        //         url: url,
-                                        //         crossDomain: true,
-                                        //         xhrFields: {
-                                        //             withCredentials: true
-                                        //         },
-                                        //         success: function() {
-                                        //             console.log('done');
-                                        //         }
-
-                                        //     });
-                                        // } catch (e) {
-                                        //     console.log('Something error');
-                                        // }
                                     }
                                 });
                             }
