@@ -2,13 +2,16 @@ function requestForData() {
     var nationalId = $('#nationalId').val();
     var lineId = $('#lineId').val();
 
+    $('#spinner').show();
+
     $.get(
-        "https://script.google.com/macros/s/AKfycbyjU9DInnvLvSWEaLAv6TMg3Q-GX_oW0_OmFPpay3gFA9i6m5eURdXOVqUv3JbMzdc/exec",
-        {
+        "https://script.google.com/macros/s/AKfycbyjU9DInnvLvSWEaLAv6TMg3Q-GX_oW0_OmFPpay3gFA9i6m5eURdXOVqUv3JbMzdc/exec", {
             id: nationalId,
             userId: lineId
         },
-        function (data) {
+        function(data) {
+            $('#spinner').hide();
+
             console.log(data);
 
             $('#studentId').val(data['data'][1]);
@@ -29,7 +32,7 @@ async function main() {
 
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     console.log("ready!");
 
     main();
