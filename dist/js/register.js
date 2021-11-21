@@ -37,7 +37,7 @@ async function main() {
 }
 
 $(document).ready(function() {
-    $('#spinner').hide();
+    //$('#spinner').hide();
     console.log("ready!");
     main();
 });
