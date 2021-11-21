@@ -16,13 +16,14 @@ async function main() {
         $.ajax({
             url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
             success: function(result) {
+                $('#spinner').hide();
                 if (result.indexOf(profile.userId) > 1) {
                     lines = result.split('\r\n');
                     lines.map((data) => {
                         var field = data.split(',');
                         if (field[0] === profile.userId) {
 
-                            $('#spinner').hide();
+
 
                             $('#name').append(field[2] + field[3] + '  ' + field[4]);
                             var now = new Date();
