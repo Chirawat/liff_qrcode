@@ -16,7 +16,8 @@ async function main() {
         var today = new Date();
 
         if (d.getDate() !== today.getDate()) {
-            return alert('QR Code ไม่ถูกต้อง');
+            alert('QR Code ไม่ถูกต้อง');
+            liff.closeWindow();
         }
 
         console.log(d);

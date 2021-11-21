@@ -44,8 +44,11 @@
 
     <script>
         $(document).ready(function() {
-            var passCode = Date.now().toString();
+            var today = Date.now();
+            var passCode = new Date(today - (24 * 60 * 60 * 1000));
             console.log('Passcode: ' + passCode);
+            console.log('Converted: ' + Date(passCode * 1000));
+
             var imgUrl = 'https://chart.googleapis.com/chart?cht=qr&chl=https://liff.line.me/1656646368-2QL0wVaq?param=' + passCode + '&choe=UTF-8&chs=500&chld=M|0';
             $('#qrCode').attr("src", imgUrl);
 
