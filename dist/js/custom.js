@@ -14,14 +14,14 @@ async function main() {
         var ts = parseInt(params.get("param"));
         var d = new Date(ts * 1000);
         var today = new Date();
-        var invalidCode = 0;
+
         if (d.getDate() !== today.getDate()) {
-            invalidCode = 1;
-            window.confirm('QR Code ไม่ถูกต้อง');
+
+            if (window.confirm('QR Code ไม่ถูกต้อง')) {
+                liff.closeWindow();
+            }
         }
-        if (invalidCode == 1) {
-            liff.closeWindow();
-        }
+
 
         console.log(d);
 
