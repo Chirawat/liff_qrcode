@@ -1,8 +1,8 @@
 function requestForData() {
+    $('#spinner').show();
+
     var nationalId = $('#nationalId').val();
     var lineId = $('#lineId').val();
-
-    $('#spinner').show();
 
     $.get(
         "https://script.google.com/macros/s/AKfycbyjU9DInnvLvSWEaLAv6TMg3Q-GX_oW0_OmFPpay3gFA9i6m5eURdXOVqUv3JbMzdc/exec", {
@@ -10,9 +10,12 @@ function requestForData() {
             userId: lineId
         },
         function(data) {
-            $('#spinner').hide();
+            //$('#spinner').hide();
 
             console.log(data);
+            if (data['status'] == 'failed') {
+                alert('ไม่พบข้อมูล');
+            }
 
             $('#studentId').val(data['data'][1]);
             $('#studentName').val(data['data'][2] + data['data'][3] + '  ' + data['data'][4]);
@@ -34,6 +37,8 @@ async function main() {
 
 $(document).ready(function() {
     console.log("ready!");
+
+    $('#spinner').hide();
 
     main();
 });
