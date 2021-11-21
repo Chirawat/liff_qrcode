@@ -22,11 +22,11 @@ async function main() {
                         var field = data.split(',');
                         if (field[0] === profile.userId) {
 
+                            $('#spinner').hide();
+
                             $('#name').append(field[2] + field[3] + '  ' + field[4]);
                             var now = new Date();
                             $('#time').append(now.toLocaleTimeString());
-
-                            $('#spinner').hide();
 
                             // get students data
                             var url = 'https://docs.google.com/forms/d/e/1FAIpQLScH94bKiIR54tzzWDd8dkvvTka_TkHJjb5RS6Ka2YvuOtS_jQ/formResponse?usp=pp_url&entry.448259260=' +
