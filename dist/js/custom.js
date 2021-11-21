@@ -26,7 +26,7 @@ async function main() {
                             var now = new Date();
                             $('#time').append(now.toLocaleTimeString());
 
-                            $('#spinner').prop('display: none;');
+                            $('#spinner').hide();
 
                             // get students data
                             var url = 'https://docs.google.com/forms/d/e/1FAIpQLScH94bKiIR54tzzWDd8dkvvTka_TkHJjb5RS6Ka2YvuOtS_jQ/formResponse?usp=pp_url&entry.448259260=' +
