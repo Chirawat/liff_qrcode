@@ -10,7 +10,7 @@ function requestForData() {
             userId: lineId
         },
         function(data) {
-            //$('#spinner').hide();
+            $('#spinner').hide();
 
             console.log(data);
             if (data['status'] == 'failed') {
@@ -37,9 +37,7 @@ async function main() {
 }
 
 $(document).ready(function() {
-    console.log("ready!");
-
     $('#spinner').hide();
-
+    console.log("ready!");
     main();
 });
