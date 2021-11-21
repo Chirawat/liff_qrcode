@@ -11,6 +11,10 @@ async function main() {
     if (params.get("param") !== null) {
         const profile = await liff.getProfile();
 
+        var ts = parseInt(params.get("param"));
+        var d = new Date(ts * 1000);
+        console.log(d);
+
         //$("#userId").append(profile.userId)
 
         $.ajax({

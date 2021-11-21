@@ -28,7 +28,7 @@
                 <div id="qr-reader"></div>
             </div>
             <div class="col-sm-6 text-center">
-                <img src="https://chart.googleapis.com/chart?cht=qr&chl=https://liff.line.me/1656646368-2QL0wVaq?param=testdev&choe=UTF-8&chs=500&chld=M|0" / height="100%">
+                <img id="qrCode" src="#" / height="100%">
             </div>
         </div>
         <div id="qr-reader-results"></div>
@@ -44,13 +44,19 @@
 
     <script>
         $(document).ready(function() {
+            var passCode = Date.now().toString();
+            console.log('Passcode: ' + passCode);
+            var imgUrl = 'https://chart.googleapis.com/chart?cht=qr&chl=https://liff.line.me/1656646368-2QL0wVaq?param=' + passCode + '&choe=UTF-8&chs=500&chld=M|0';
+            $('#qrCode').attr("src", imgUrl);
+
             function onScanSuccess(decodedText, decodedResult) {
                 if (decodedText !== lastResult) {
                     ++countResults;
                     lastResult = decodedText;
+
                     // Handle on success condition with the decoded message.
                     console.log(`Scan result ${decodedText}`, decodedResult);
-                    //$('#result').text(`Scan result ${decodedText}`, decodedResult);
+
                     $.ajax({
                         url: "https://docs.google.com/spreadsheets/d/1FXXk80ECzWbOiiNBXMngZyC79vjXZu8sDYLnvJQBVd0/export?format=csv",
                         success: function(result) {
