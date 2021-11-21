@@ -12,7 +12,7 @@ async function main() {
         const profile = await liff.getProfile();
 
         var ts = parseInt(params.get("param"));
-        var d = new Date(ts * 1000);
+        var d = new Date(ts);
         var today = new Date();
 
         if (d.getDate() !== today.getDate()) {
