@@ -15,6 +15,7 @@ function requestForData() {
             console.log(data);
             if (data['status'] == 'failed') {
                 alert('ไม่พบข้อมูล');
+                return;
             }
 
             $('#studentId').val(data['data'][1]);
