@@ -19,9 +19,10 @@ async function main() {
 
             //if (window.confirm('QR Code ไม่ถูกต้อง')) {
             if (alert('QR Code ไม่ถูกต้อง')) {
-                //liff.closeWindow();
+                liff.closeWindow();
+            } else {
+                liff.closeWindow();
             }
-            liff.closeWindow();
 
         }
 
