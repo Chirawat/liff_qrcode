@@ -18,6 +18,8 @@ async function main() {
         if (d.getDate() !== today.getDate()) {
             //if (window.confirm('QR Code ไม่ถูกต้อง')) {
             liff.closeWindow();
+
+            alert('QR Code ไม่ถูกต้อง');
             //}
         }
 
