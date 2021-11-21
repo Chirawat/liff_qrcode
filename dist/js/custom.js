@@ -17,7 +17,7 @@ async function main() {
         var invalidCode = 0;
         if (d.getDate() !== today.getDate()) {
             invalidCode = 1;
-            confirm('QR Code ไม่ถูกต้อง');
+            window.confirm('QR Code ไม่ถูกต้อง');
         }
         if (invalidCode == 1) {
             liff.closeWindow();
