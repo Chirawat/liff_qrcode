@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="./dist/css/custom.css">
+
+    <title>Front Panel</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row" style="height: 100vh;">
+            <div class="col-sm-9">
+                <iframe id="dashboard" width="100%" height="100%" src="https://datastudio.google.com/embed/reporting/de71491f-f9fb-4c68-b05b-b379e3aa81f9/page/1M" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+            <div class="col-sm-3 text-center">
+                <br/>
+                <h1>สแกนเพื่อลงชื่อ</h1>
+                <img id="qrCode" src="#" width="75%">
+                <hr/>
+                <h1>สแกนเพื่อลงทะเบียน</h1>
+                <img id="register" src="#" width="75%">
+            </div>
+        </div>
+        <div id="qr-reader-results"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.11/jquery.csv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <!-- <script src="./dist/js/custom.js "></script> -->
+
+    <script>
+        $(document).ready(function() {
+            //var today = Date.now();
+            //var passCode = new Date(today - (24 * 60 * 60 * 1000));
+            var passCode = Date.now();
+            console.log('Passcode: ' + passCode);
+            console.log('Converted: ' + Date(passCode * 1000));
+
+            var imgUrl = 'https://chart.googleapis.com/chart?cht=qr&chl=https://liff.line.me/1656646368-2QL0wVaq?param=' + passCode + '&choe=UTF-8&chs=500&chld=M|0';
+            $('#qrCode').attr("src", imgUrl);
+
+            var imgRegister = 'https://chart.googleapis.com/chart?cht=qr&chl=https://liff.line.me/1656646368-JLlBKQem&choe=UTF-8&chs=500&chld=M|0';
+            $('#register').attr("src", imgRegister);
+
+            setInterval(function() {
+                //document.getElementById('dashboard').contentWindow.location.reload();
+                document.getElementById('dashboard').src = document.getElementById('dashboard').src
+                    //alert("Hello");
+            }, 60000);
+
+            console.log("ready!");
+        });
+    </script>
+
+    <!-- DEBUG -->
+    <!-- <script src="https://unpkg.com/vconsole/dist/vconsole.min.js"></script>
+    <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script> -->
+</body>
+
+</html>
