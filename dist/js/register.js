@@ -48,7 +48,7 @@ $(document).ready(function() {
 
     console.log("ready!");
 
-    $('#result').hide();
+    //$('#result').hide();
 
     main();
 });
