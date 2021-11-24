@@ -13,7 +13,8 @@ function requestForData() {
         function(data) {
             $('#spinner').hide();
 
-            $('#result').show();
+            //$('#result').show();
+            document.getElementById("result").style.display = "block";
 
             console.log(data);
             if (data['status'] == 'failed') {
