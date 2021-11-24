@@ -1,5 +1,14 @@
 var UID;
 
+async function sendMsg(name, time) {
+    if (liff.getContext().type !== "none" && liff.getContext().type !== "external") {
+        await liff.sendMessages([{
+            "type": "text",
+            "text": 'ลงเวลามาเรียนสำเร็จ\n' + name + '\n' + time
+        }])
+    }
+}
+
 async function main() {
 
     await liff.init({ liffId: "1656646368-2QL0wVaq" });
@@ -42,8 +51,8 @@ async function main() {
                         if (field[0] === profile.userId) {
 
 
-
-                            $('#name').append(field[2] + field[3] + '  ' + field[4]);
+                            var name = field[2] + field[3] + '  ' + field[4];
+                            $('#name').append(name);
                             var now = new Date();
                             $('#time').append(now.toLocaleTimeString());
 
@@ -59,6 +68,8 @@ async function main() {
                             $('#status').text('สำเร็จ!');
                             $("#close-button").css("display", "inline");
 
+                            sendMsg(name, now.toLocaleString());
+
                             // // save to google sheet
                             var xmlHttp = new XMLHttpRequest();
                             xmlHttp.open("GET", url, false); // false for synchronous request
@@ -71,8 +82,12 @@ async function main() {
                 } else {
                     alert('ไม่พบบัญชี กรุณาลงทะเบียนก่อนใช้งาน')
                 }
+
             }
         });
+    } else {
+        alert('qr code ไม่ถูกต้อง');
+        liff.closeWindow();
     }
 }
 
