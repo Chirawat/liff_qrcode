@@ -24,7 +24,8 @@ async function main() {
         var d = new Date(ts * 1000);
         var today = new Date();
 
-        if (d.getDate() !== today.getDate()) {
+        if (d.getDate() !== today.getDate() || 
+            d.getMinutes() - today.getMinutes() > 1) {
 
             //if (window.confirm('QR Code ไม่ถูกต้อง')) {
             if (alert('QR Code ไม่ถูกต้อง\nความซื่อสัตย์เป็นเครื่องหมายของคนดี')) {
