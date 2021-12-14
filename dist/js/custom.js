@@ -22,7 +22,7 @@ async function main() {
 
         var ts = parseInt(params.get("param"));
         var d = new Date(ts * 1000);
-        var today = new Date(ts * 1000);
+        var today = new Date();
 
         if (d.getDate() !== today.getDate()) {
 
