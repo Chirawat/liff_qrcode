@@ -27,8 +27,8 @@ async function main() {
         console.log("time diff=")
         console.log( today.getMinutes() - d.getMinutes() );
 
-        if (d.getDate() !== today.getDate() || 
-            today.getMinutes() - d.getMinutes() > 1) {
+        if ((d.getDate() !== today.getDate()) || 
+            (today.getMinutes() - d.getMinutes() > 5) ) {
 
             //if (window.confirm('QR Code ไม่ถูกต้อง')) {
             if (alert('QR Code ไม่ถูกต้อง\nความซื่อสัตย์เป็นเครื่องหมายของคนดี')) {
