@@ -31,7 +31,7 @@ async function main() {
             (today.getMinutes() - d.getMinutes() > 5) ) {
 
             //if (window.confirm('QR Code ไม่ถูกต้อง')) {
-            if (alert('QR Code ไม่ถูกต้อง\nความซื่อสัตย์เป็นเครื่องหมายของคนดี')) {
+            if (alert('QR Code ไม่ถูกต้อง ให้สแกนหน้าเครื่อง\nความซื่อสัตย์เป็นเครื่องหมายของคนดี')) {
                 liff.closeWindow();
             } else {
                 liff.closeWindow();
