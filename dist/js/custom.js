@@ -27,7 +27,7 @@ async function main() {
         if (d.getDate() !== today.getDate()) {
 
             //if (window.confirm('QR Code ไม่ถูกต้อง')) {
-            if (alert('QR Code ไม่ถูกต้อง ความซือสัตย์เป็นเครื่องหมายของคนดี')) {
+            if (alert('QR Code ไม่ถูกต้อง\nความซื่อสัตย์เป็นเครื่องหมายของคนดี')) {
                 liff.closeWindow();
             } else {
                 liff.closeWindow();
