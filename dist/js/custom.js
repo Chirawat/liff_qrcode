@@ -24,6 +24,8 @@ async function main() {
         var d = new Date(ts * 1000);
         var today = new Date();
 
+        console.log("time diff" + today.getMinutes() - d.getMinutes() );
+
         if (d.getDate() !== today.getDate() || 
             today.getMinutes() - d.getMinutes() > 1) {
 
